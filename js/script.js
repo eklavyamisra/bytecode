@@ -67,8 +67,6 @@ document.getElementById('myForm').addEventListener('submit', async function (e) 
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries()); // Convert to JSON object
 
-    console.log('Form Data:', data); // Log the form data for debugging
-
     try {
         const endpoint = 'https://sheetdb.io/api/v1/al5c0p710m614';
 
@@ -81,10 +79,9 @@ document.getElementById('myForm').addEventListener('submit', async function (e) 
             body: JSON.stringify(data), // Directly send the data object
         });
 
-        console.log('Response Status:', response.status); // Log the response status for debugging
-
         if (response.ok) {
             alert('Data submitted successfully!');
+            e.target.reset(); // Clear the form data
         } else {
             alert('Failed to submit data. Please try again.');
         }
